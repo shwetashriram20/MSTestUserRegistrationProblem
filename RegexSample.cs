@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace UserRegisteration
 {
-     class RegexSample
+     public class RegexSample
     {
         string pattern = "^[A-Za-z]{2,}$";
 
