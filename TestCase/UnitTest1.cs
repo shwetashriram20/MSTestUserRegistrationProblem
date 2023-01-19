@@ -15,9 +15,16 @@ namespace TestProject2
 
         public void ValidateFirstname(string a, string expected)
         {
+            try
+            {
 
-            var actual = RegexSample.ValidatingFirstName(a);
-            Assert.AreEqual(expected, actual);
+                var actual = RegexSample.ValidatingFirstName(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
         }
         //Validating for Last Name
         [TestMethod]
@@ -27,8 +34,15 @@ namespace TestProject2
         [DataRow("tae09", null)]
         public void ValidateUserLastname(string a, string expected)
         {
-            var actual = RegexSample.ValidatingLastName(a);
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                var actual = RegexSample.ValidatingLastName(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
         }
         //Validation for Email
         [TestMethod]
@@ -57,8 +71,15 @@ namespace TestProject2
 
         public void ValidateUserEmail(string a, string expected)
         {
-            var actual = RegexSample.ValidatingEmailId(a);
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                var actual = RegexSample.ValidatingEmailId(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
         }
 
         //Validation for Phone Number
@@ -72,8 +93,15 @@ namespace TestProject2
         [DataRow("91 984290505000000", null)]
         public void ValidateUserPhoneNumber(string a, string expected)
         {
-            var actual = RegexSample.ValidatingPhoneNum(a);
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                var actual = RegexSample.ValidatingPhoneNum(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
         }
 
         ////Validation for Password
@@ -90,14 +118,23 @@ namespace TestProject2
         [DataRow("@shw#12shw", null)]
         [DataRow(")shwe12", null)]
         [DataRow(")shwEt12", null)]
-        [DataRow("shw-et@12S", null)]
-        [DataRow("shwET@s", null)]
+        [DataRow("shw-et@12A", null)]
+        [DataRow("shwET@a", null)]
 
-        public void ValidateUserPassword(string a, string expected)
-        {
-            var actual = RegexSample.ValidatingPassWord(a);
-            Assert.AreEqual(expected, actual);
-        }
+         public void ValidateUserPassword(string a, string expected)
+         {
+            try
+            {
+                var actual = RegexSample.ValidatingPassWord(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
+         }
+
+
 
 
 
