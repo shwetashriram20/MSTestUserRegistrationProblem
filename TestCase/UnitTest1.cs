@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UserRegisteration;
 
-namespace TestProject2
+namespace TestProject1
 {
     [TestClass]
     public class UnitTest1
@@ -15,9 +15,16 @@ namespace TestProject2
 
         public void ValidateFirstname(string a, string expected)
         {
+            try
+            {
 
-            var actual = RegexSample.ValidatingFirstName(a);
-            Assert.AreEqual(expected, actual);
+                var actual = RegexSample.ValidatingFirstName(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
         }
         //Validating for Last Name
         [TestMethod]
@@ -27,8 +34,15 @@ namespace TestProject2
         [DataRow("tae09", null)]
         public void ValidateUserLastname(string a, string expected)
         {
-            var actual = RegexSample.ValidatingLastName(a);
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                var actual = RegexSample.ValidatingLastName(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
         }
         //Validation for Email
         [TestMethod]
@@ -57,8 +71,15 @@ namespace TestProject2
 
         public void ValidateUserEmail(string a, string expected)
         {
-            var actual = RegexSample.ValidatingEmailId(a);
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                var actual = RegexSample.ValidatingEmailId(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
         }
 
         //Validation for Phone Number
@@ -72,8 +93,15 @@ namespace TestProject2
         [DataRow("91 984290505000000", null)]
         public void ValidateUserPhoneNumber(string a, string expected)
         {
-            var actual = RegexSample.ValidatingPhoneNum(a);
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                var actual = RegexSample.ValidatingPhoneNum(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
         }
 
         ////Validation for Password
@@ -90,17 +118,108 @@ namespace TestProject2
         [DataRow("@shw#12shw", null)]
         [DataRow(")shwe12", null)]
         [DataRow(")shwEt12", null)]
-        [DataRow("shw-et@12S", null)]
-        [DataRow("shwET@s", null)]
+        [DataRow("shw-et@12A", null)]
+        [DataRow("shwET@a", null)]
 
         public void ValidateUserPassword(string a, string expected)
         {
-            var actual = RegexSample.ValidatingPassWord(a);
-            Assert.AreEqual(expected, actual);
+            try
+            {
+                var actual = RegexSample.ValidatingPassWord(a);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.message);
+            }
+        }
+        [TestMethod]
+        public void Test_Method_Object_Creation_RegexSample()
+        {
+            object expected = new RegexSample();
+            UserRegistrationFactory factory = new UserRegistrationFactory();
+            object actual = factory.CreateObjectForRegexSample("UserRegistration.RegexSample", "RegexSample");
+            expected.Equals(actual);
+
+        }
+        //Test for parameterconstructor invoked using object created
+        [TestMethod]
+        public void Test_Method_Parameteized_Constructor()
+        {
+            object expected = new RegexSample("RegularExpression");
+            UserRegistrationFactory factory = new UserRegistrationFactory();
+            object actual = factory.CreateParameterizedConstructor("UserRegistration.RegexSample", "RegexSample", "RegularExpression");
+            actual.Equals(expected);
+        }
+
+        [TestMethod]
+        public void Reflection_Return_Default_Constructor_No_Constructor_Found()
+        {
+            string expected = "No constructor found";
+            object obj = null;
+            try
+            {
+                UserRegistrationFactory factory = new UserRegistrationFactory();
+                obj = factory.CreateObjectForRegexSample("UserRegistration.RegexSample", "RegexSam");
+
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+        }
+        [TestMethod]
+        public void Reflection_Return_Default_Constructor_No_Class_Found()
+        {
+            string expected = "No class found";
+            object obj = null;
+            try
+            {
+                UserRegistrationFactory factory = new UserRegistrationFactory();
+                obj = factory.CreateObjectForRegexSample("UserRegistration.RegexSae", "RegexSample");
+
+            }
+            catch (CustomException actual)
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+        }
+        [TestMethod]
+        public void Reflection_Return_Parameterized_Class_Invalid()
+        {
+            string message = "Regular Expression";
+            string expected = "No class found";
+            object actual = null;
+            try
+            {
+                UserRegistrationFactory factory = new UserRegistrationFactory();
+                actual = factory.CreateParameterizedConstructor("UserRegistration.RegexSae", "RegexSample", message);
+
+            }
+            catch (CustomException actual1)
+            {
+                Assert.AreEqual(expected, actual1.Message);
+            }
+        }
+        [TestMethod]
+        public void Reflection_Return_Parameterized_Constructor_Invalid()
+        {
+            string message = "Regular Expression";
+            string expected = "No constructor found";
+            object actual = null;
+            try
+            {
+                UserRegistrationFactory factory = new UserRegistrationFactory();
+                actual = factory.CreateParameterizedConstructor("UserRegistration.RegexSample", "RegexSam", message);
+
+            }
+            catch (CustomException actual1)
+            {
+                Assert.AreEqual(expected, actual1.Message);
+            }
         }
 
 
 
     }
 }
-
