@@ -8,11 +8,10 @@ namespace TestProject1
     {
         //validation for first Name
         [TestMethod]
-        [DataRow("Shalini", "Shalini")]
-        [DataRow("Sha", "Sha")]
+        [DataRow("Shweta", "Shweta")]
+        [DataRow("Shw", "Shw")]
         [DataRow("s", null)]
-        [DataRow("Shalu05", null)]
-
+        [DataRow("Shwt09", null)]
         public void ValidateFirstname(string a, string expected)
         {
             try
@@ -28,10 +27,10 @@ namespace TestProject1
         }
         //Validating for Last Name
         [TestMethod]
-        [DataRow("Venkatesh", "Venkatesh")]
-        [DataRow("Ve", null)]
-        [DataRow("Venkat", "Venkat")]
-        [DataRow("Venkat05", null)]
+        [DataRow("taeh", "taeh")]
+        [DataRow("ta", null)]
+        [DataRow("tae", "tae")]
+        [DataRow("tae09", null)]
         public void ValidateUserLastname(string a, string expected)
         {
             try
@@ -106,20 +105,20 @@ namespace TestProject1
 
         ////Validation for Password
         [TestMethod]
-        [DataRow("Shalu@123", "Shalu@123")]
-        [DataRow("Shai#lini123", "Sha#lini123")]
-        [DataRow("Sha@lini1S ", "Sha@lini1S")]
-        [DataRow("@Shalini129", "@Shalini129")]
-        [DataRow("Sha-lini123", "Sha-lini123")]
-        [DataRow("shalini123)@1234", null)]
-        [DataRow("Sha@lini", null)]
-        [DataRow("sha123", null)]
-        [DataRow("sha@123", null)]
-        [DataRow("@sha#12sha", null)]
-        [DataRow(")shalu12", null)]
-        [DataRow(")shaLu12", null)]
-        [DataRow("sha-lu@12S", null)]
-        [DataRow("shaLU@s", null)]
+       [DataRow("Shwe@123", "Shwe@123")]
+        [DataRow("Shwe#ta123", "Shwe#ta123")]
+        [DataRow("Shw@etaa1S ", "Shw@etaa1S")]
+        [DataRow("@Shwetae129", "@Shwetae129")]
+        [DataRow("Shw-eta123", "Shw-eta123")]
+        [DataRow("shweta123)@1234", null)]
+        [DataRow("Shw@eta", null)]
+        [DataRow("shw123", null)]
+        [DataRow("shw@123", null)]
+        [DataRow("@shw#12shw", null)]
+        [DataRow(")shwe12", null)]
+        [DataRow(")shwEt12", null)]
+        [DataRow("shw-et@12A", null)]
+        [DataRow("shwET@a", null)]
 
         public void ValidateUserPassword(string a, string expected)
         {
